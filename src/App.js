@@ -1,44 +1,48 @@
 import FormList from "./FormList";
 import FormInput from "./FormInput";
-import "./App.css";
+import styles from "./App.module.css";
 import { useState } from "react";
 
 function App() {
-  const [newObj, setnewObj] = useState([]);
-  const [newDate, setnewDate] = useState([]);
+  const [ newObj, setnewObj ] = useState([]);
+  const [ newDate, setnewDate ] = useState([]);
 
   const getDataHandler = (data, date) => {
-    setnewObj((previousData) => [...previousData, data]);
+    setnewObj((previousData) => [ ...previousData, data ]);
 
-    setnewDate((previousDate) => [...previousDate, date]);
+    setnewDate((previousDate) => [ ...previousDate, date ]);
     console.log(data);
     console.log(date);
   };
 
   const cutomClickHandler = (Id) => {
     console.log(Id);
-    console.log("clicked");
+    // console.log("clicked");
     setnewObj(
-      [...newObj].filter((del) => {
-        return del.id !== Id;
+      [ ...newObj ].filter((currentValue) => {
+        return currentValue.id !== Id;
       })
     );
   };
 
+
+  const resultData = function (currentValue, index) {
+    return (
+      <FormList
+        item={newObj}
+        date={newDate[ index ]}
+        key={currentValue.id}
+        title={currentValue.title}
+        onClickHandler={() => cutomClickHandler(currentValue.id)}
+      />
+    );
+
+  }
+
   return (
-    <div className="App">
+    <div className={styles.App}>
       <FormInput ongetData={getDataHandler} />
-      {newObj.map((ele, index) => {
-        return (
-          <FormList
-            item={newObj}
-            date={newDate[index]}
-            key={ele.id}
-            title={ele.title}
-            onClickHandler={() => cutomClickHandler(ele.id)}
-          />
-        );
-      })}
+      {newObj.map(resultData)}
     </div>
   );
 }

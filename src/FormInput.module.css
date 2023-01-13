@@ -19,7 +19,7 @@ form {
   flex-direction: column;
 }
 
-h2 {
+.head{
   font-size: 2rem;
   color: #333;
 }
@@ -34,7 +34,7 @@ h2 {
   margin-bottom: 2rem;
 }
 
-button {
+button{
   background-color: rgb(206, 16, 140);
   font-size: 1rem;
   font-weight: bold;
@@ -45,3 +45,13 @@ button {
   border: 1px solid #777;
   box-shadow: 5px 10px 8px #888;
 }
+
+/*dynamic class8 */
+.input_field.valid{
+  border: solid red;
+}
+
+.name_valid{
+  color: red;
+}
+
